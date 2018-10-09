@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+     
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<form [formGroup]="listForm" (ngSubmit)="update()">
+
+  <div class="mb-2">
+      <button type="button" class="btn btn-outline-info btn-sm" (click)="edit()">edit</button>
+  </div>
+
+  <div formArrayName="items">
+
+  <ul class="list-group mb-3" *ngFor="let listItem of listForm.get('items').controls; let i=index" [formGroupName]="i">
+    <li class="list-group-item"><input type="text" class="form-control" value="{{ listItem.value }}"><button (click)="removeItem(i)"><i class="fas fa-times-circle"></i></button></li>
+  </ul>
+  <div class="mb-2">
+      <button type="button" class="btn btn-outline-info btn-sm" (click)="addItem()">Add</button>
+  </div>
+
+  <div class="mb-2" >
+      <button [disabled]="editText" type="submit" class="btn btn-outline-info btn-sm">save</button>
+      <button [disabled]="editText" type="button" class="btn btn-outline-danger btn-sm" (click)="cancel()">cancel</button>
+  </div>
+
+  </div>
+</form>
+</div>
